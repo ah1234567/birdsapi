@@ -1,0 +1,20 @@
+{
+  "name": "reactboilerplate2",
+  "version": "1.0.0",
+  "description": "Birds",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "\"Abdullah Hasan\"",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^4.1.1",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
