@@ -3,11 +3,62 @@ import { Route, Switch } from 'react-router-dom';
 import '../index.css';
 import Home from './pages/Home';
 import List from './pages/List';
+import sbird from '../sbird.gif';
+import ladance from '../ladance.gif';
+import BirdofParadise from '../BirdofParadise.gif';
+
+// import 'index.html';
+// import '../App.scss'
+import '../App/function';
+import 'font-awesome/css/font-awesome.min.css'
+// import 'cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+class App extends Component {  
+  constructor(props) {
+  super(props);
+  this.state = {
+    name1 : null,
+    name2 : null,
+    name3 : null
+  };
 
 
-class App extends Component {
+  
+  this.functionChange = this.functionChange.bind(this);
+  this.functionSubmit = this.functionSubmit.bind(this);
+  }
+
+
+  functionChange(event){
+    this.setState({[event.target.name]: event.target.value})
+    console.log(this.state)
+  }
+
+  
+  
+
+
+
+functionSubmit(event){
+  event.preventDefault();
+  if(!this.state.name1){
+    alert("Fill out name");
+  }
+ else if(!this.state.name2){
+    alert("Fill out email");
+  }else if(!this.state.name3){
+    alert("Fill out message");
+  } 
+  else{
+    alert('Form submitted: ' + this.state.name1 +' '+ this.state.name2 +' '+this.state.name3);
+  }
+
+}
+
+
+
   render() { 
-    console.log(test);
+        
+
     return(
    <div>
     <div class="dropdown show">
@@ -57,7 +108,7 @@ class App extends Component {
             randomly.
 
             </p>
-          <img class ="snowbird" src = "sbird.gif" alt ="snbird"  />
+          <img class ="snowbird" src ={sbird} alt ="snbird"  />
           </div>
         </a>
 
@@ -73,7 +124,7 @@ class App extends Component {
                     <h1>Layson Albatross</h1>
               <p>They live in the forests.
                   </p>
-                  <img class = "laysan" src = "ladance.gif" alt = "ladance"/>
+                  <img class = "laysan" src = {ladance}  alt = "ladance"/>
                 </div>
                 </a>
 
@@ -88,7 +139,7 @@ class App extends Component {
                       <div class = "aboutme4 abt-birds4">
                         <h1>Birds of Paradise</h1> 
                         <p>They are really jumpy.</p>  
-                        <img class = "bop" src = "BirdofParadise.gif" alt = "bops"/>
+                        <img class = "bop" src = {BirdofParadise}  alt = "bops"/>
                       </div>
                     </a>
                       <div class="surrounding5">
@@ -103,16 +154,14 @@ class App extends Component {
                               <h1>Contact</h1> 
                               <p>Sign up to get more information about dancing birds.</p> 
                              
-                              <form name = "contactform" action = "/action_page.php" id="action" method = "post">  
-                              Name: <input type = "text"  name = "name1" placeholder="Pleade put your name here."/>
+                              <form onSubmit = {this.functionSubmit}>  
+                              Name: <input type = "text"  name = "name1" placeholder="Pleade put your name here." value = {this.state.name1}    onChange={this.functionChange}/>
                              
-                              email : <input class = "em" name = "name2" type = "email"  placeholder = "Please put your email here" required/> <br/>
-                              Message: <br /><textarea rows = "10" name = "name3" cols = "90" name= "comment" placeholder = "Please put your message here" ></textarea>
+                              email : <input class = "em" name = "name2" type = "email"  placeholder = "Please put your email here"  value = {this.state.name2}    onChange={this.functionChange}/> <br/>
+                              Message: <br /><textarea rows = "10" name = "name3" cols = "90" placeholder = "Please put your message here" value = {this.state.name3}    onChange={this.functionChange}></textarea>
                               <div class = "submitted">
-                              <button  type = "button" class = "btn btn-primary btn-lg" onclick="signForm()" >Submit</button>
+                              <button  type = "submit" class = "btn btn-primary btn-lg"  >Submit</button>
                                   </div>
-                             
-                              
                             </form>
                               </div>
                            
@@ -122,9 +171,11 @@ class App extends Component {
                             <a href = "https://github.com/ah1234567?tab=repositories" class = "fa fa-github"></a>
 
                             
-                             </div>)
+                             </div>
+                             )
  
-  }
-}
+    }}
+
+
 
 export default App;
